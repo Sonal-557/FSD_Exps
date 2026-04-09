@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI';
+  background: #eef2f7;
+}
+
+/* CENTER */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* CARD */
+.card {
+  width: 420px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* ITEM */
+.item {
+  background: #f7f9fc;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+}
+
+/* WINNER */
+.winner {
+  border: 2px solid #4a90e2;
+  background: #eef5ff;
+}
+
+/* ROWS */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* PROGRESS BAR */
+.bar {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.fill {
+  height: 100%;
+  background: #4a90e2;
+  border-radius: 5px;
+}
+
+/* BUTTON */
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #4a90e2;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #357abd;
+}
+
+/* RESET */
+.reset {
+  width: 100%;
+  margin-top: 10px;
+  background: #e74c3c;
+}
+
+.reset:hover {
+  background: #c0392b;
+}
