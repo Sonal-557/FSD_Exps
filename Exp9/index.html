@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Premium Form</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI';
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 420px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* ✅ FIXED INPUT ALIGNMENT */
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            box-sizing: border-box;
+            height: 45px;
+        }
+
+        /* Remove weird dropdown style */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        /* Focus effect */
+        input:focus, select:focus {
+            box-shadow: 0 0 6px #00c6ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .preview {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .success {
+            color: #00ffcc;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body ng-controller="formCtrl">
+
+<div class="card">
+    <h2>Student Form</h2>
+
+    <!-- FORM -->
+    <input type="text" placeholder="Enter Name" ng-model="user.name" ng-change="livePreview()">
+
+    <input type="number" placeholder="Enter Age" ng-model="user.age" ng-change="livePreview()">
+
+    <select ng-model="user.course" ng-change="livePreview()">
+        <option value="">Select Course</option>
+        <option>CSE</option>
+        <option>ECE</option>
+        <option>IT</option>
+    </select>
+
+    <!-- BUTTON -->
+    <button ng-click="submitForm()">Submit</button>
+
+    <!-- LIVE PREVIEW -->
+    <div class="preview" ng-if="user.name || user.age || user.course">
+        <h4>Live Preview:</h4>
+        Name: {{user.name}} <br>
+        Age: {{user.age}} <br>
+        Course: {{user.course}}
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success" ng-if="submitted">
+        ✅ Form Submitted Successfully!
+    </div>
+</div>
+
+
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("formCtrl", function($scope) {
+
+        $scope.user = {};
+        $scope.submitted = false;
+
+        $scope.livePreview = function() {
+            // live update
+        };
+
+        $scope.submitForm = function() {
+            if($scope.user.name && $scope.user.age && $scope.user.course) {
+                $scope.submitted = true;
+            } else {
+                alert("Please fill all fields!");
+            }
+        };
+
+    });
+</script>
+
+</body>
+</html>
