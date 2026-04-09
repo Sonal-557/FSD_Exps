@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html ng-app="jobApp">
+<head>
+    <title>Job Registration Form</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+        }
+
+        .container {
+            width: 520px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 35px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-top: 6px solid #4a90e2;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccd6dd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 4px rgba(74,144,226,0.4);
+            outline: none;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 22px;
+            background: #4a90e2;
+            border: none;
+            color: white;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+        button:disabled {
+            background: #b0bec5;
+            cursor: not-allowed;
+        }
+
+        .success {
+            margin-top: 20px;
+            text-align: center;
+            color: #27ae60;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body ng-controller="jobCtrl">
+
+<div class="container">
+    <h2>Job Registration</h2>
+
+    <form name="jobForm" novalidate>
+
+        <label>Full Name</label>
+        <input type="text" name="name" ng-model="user.name" required>
+        <div class="error" ng-show="jobForm.name.$touched && jobForm.name.$invalid">
+            Name is required
+        </div>
+
+        <label>Email</label>
+        <input type="email" name="email" ng-model="user.email" required>
+        <div class="error" ng-show="jobForm.email.$touched && jobForm.email.$invalid">
+            Enter valid email
+        </div>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" ng-model="user.phone"
+               ng-pattern="/^[0-9]{10}$/"
+               required>
+        <div class="error" ng-show="jobForm.phone.$touched && jobForm.phone.$invalid">
+            Enter 10 digit phone number
+        </div>
+
+        <label>Password</label>
+        <input type="password" name="password" ng-model="user.password"
+               ng-minlength="6" required>
+        <div class="error" ng-show="jobForm.password.$touched && jobForm.password.$invalid">
+            Minimum 6 characters required
+        </div>
+
+        <label>Job Role</label>
+        <select name="role" ng-model="user.role" required>
+            <option value="">Select Role</option>
+            <option>Frontend Developer</option>
+            <option>Backend Developer</option>
+            <option>Full Stack Developer</option>
+        </select>
+        <div class="error" ng-show="jobForm.role.$touched && jobForm.role.$invalid">
+            Please select a role
+        </div>
+
+        <label>Experience (Years)</label>
+        <input type="number" name="exp" ng-model="user.exp" min="0" required>
+        <div class="error" ng-show="jobForm.exp.$touched && jobForm.exp.$invalid">
+            Enter valid experience
+        </div>
+
+        <button ng-click="submitForm()" ng-disabled="jobForm.$invalid">
+            Submit Application
+        </button>
+
+    </form>
+
+    <div class="success" ng-if="submitted">
+        ✔ Application Submitted Successfully
+    </div>
+
+</div>
+
+<script>
+    var app = angular.module("jobApp", []);
+
+    app.controller("jobCtrl", function($scope) {
+        $scope.user = {};
+        $scope.submitted = false;
+
+        $scope.submitForm = function() {
+            if ($scope.jobForm.$valid) {
+                $scope.submitted = true;
+            }
+        };
+    });
+</script>
+
+</body>
+</html>
